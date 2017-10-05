@@ -3,6 +3,8 @@ Java class library with utilities for processing hyperspectral images from PSI h
 
 Author: Alexander Ivakov
 
+This project is not being developed. No commits please, fork it if you want to develop it.
+
 This is a class library that contains utility functions for processing of hyperspectral images. 
 
 To use: build a JAR and import into your project. Some example programs for typical use cases are below.
