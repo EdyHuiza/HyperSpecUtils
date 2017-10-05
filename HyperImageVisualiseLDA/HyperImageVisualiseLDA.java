@@ -32,24 +32,13 @@ public class HyperImageVisualiseLDA {
         final String calibpath = args[1];
         final String imgpath = args[0];
         final String modelpath = args[2];
-        
-        //System.setProperty("java.library.path", "C:\\opencv\\opencv\\build\\java\\x64");
-        //System.out.println(System.getProperty("java.library.path"));
-        
+  
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
               
         BILReader currentimage = new BILReader(imgpath, calibpath, true);
         currentimage.readBIL(imgpath, calibpath);
         
-        /*JFileChooser fc = new JFileChooser();
-        int returnVal = fc.showOpenDialog(null);
-        String file = fc.getSelectedFile().getAbsolutePath();
-        String modelpath = file;*/
-        //String modelpath = "C:\\HyperSpec\\LDAModel.xml";
-        
-        
-        
-        currentimage.loadModelFromXML("C:\\HyperSpec\\model1_fullRes.xml");
+        currentimage.loadModelFromXML("C:\\HyperSpec\\model1_fullRes.xml"); //pre-classify the image with a KNN model first, then only plot the LDA scores for the plant pixels
         
         Mat predicted = currentimage.predictImage();
         Mat predicted8 = new Mat();
