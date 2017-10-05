@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * /*
+ * Utility class Java class for processing hyperspectral images from the hyperspectral camera on PhenoMobileLite and training and using machine-learning pixel classification models.
+ * Author: Alexander Ivakov
  */
 package hyperspecutils;
 
