@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Class to do multi-threaded KNN prediction on hyperspectral images
  */
 package hyperspecutils;
 
@@ -42,7 +40,7 @@ public class ForkPredict extends RecursiveTask<Mat> {
         this.classifiedImage = new Mat(range, width, CV_32F);
     }
     
-    public ForkPredict(ArrayList<Mat> hyperimage, CvStatModel model){           //constructor to pass a whole image to ForPredict
+    public ForkPredict(ArrayList<Mat> hyperimage, CvStatModel model){           //constructor to pass a whole image to ForkPredict
         
         //Runtime runtime = Runtime.getRuntime();
         //nCPUs = runtime.availableProcessors();
