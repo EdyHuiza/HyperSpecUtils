@@ -4,11 +4,7 @@
  * and open the template in the editor.
  */
 
-
 package hyperspecjava;
-
-
-
 
 import hyperspecutils.BILReader;
 import java.io.IOException;
@@ -29,17 +25,14 @@ public class HyperSpecJava {
      * @param args the command line arguments
      */
     
-    
-    
     public static void main(String[] args)  throws IOException{
         
         //final String calibpath = args[1];
         //final String imgpath = args[0];
         
-        //System.setProperty("java.library.path", "C:\\opencv\\opencv\\build\\java\\x64");
-        
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
         
+        //File chooser dialogue to select the BIL file
         JFileChooser fc = new JFileChooser();
         fc.setDialogTitle("Load image file");
         int returnVal = fc.showOpenDialog(null);
@@ -47,23 +40,18 @@ public class HyperSpecJava {
         String imgpath = file;
         System.out.println(file);
         
+        //File chooser dialogue to select the calibration file
         JFileChooser fc_calib = new JFileChooser();
         fc_calib.setDialogTitle("Load calibration file");
         int returnVal_calib = fc_calib.showOpenDialog(null);
         String file_calib = fc_calib.getSelectedFile().getAbsolutePath();
         String calibpath = file_calib;
         
-              
         BILReader currentimage = new BILReader(imgpath, calibpath, true);
         currentimage.readBIL(imgpath, calibpath);
         currentimage.subsampleWavelengths(4, false);
         
-        System.out.println("Width = " + currentimage.getWidth());
-        System.out.println("Imageframes = " + currentimage.getImageframes());
-        System.out.println("Depth = " + currentimage.getDepth());
-        System.out.println("Offset = " + currentimage.getOffset());
-        System.out.println("Data type = " + currentimage.getHyperimage().get(0).depth());
-        //currentimage.writeAllFrames(currentimage.getHyperimage(), "C:\\Hyperspec");
+        //currentimage.writeAllFrames(currentimage.getHyperimage(), "C:\\Hyperspec");  //use this to export normalised reflectance for each wavelength as a separate image
         Mat rgb = currentimage.getRGB();
         
         Mat resizeimage = new Mat();
