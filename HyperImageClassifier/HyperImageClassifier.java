@@ -33,7 +33,7 @@ public class HyperImageClassifier {
         //final String imgpath = args[0];
         //final String modelpath = args[2];
         
-        
+        //Dialogue to choose a BIL file
         JFileChooser fc = new JFileChooser();
         fc.setDialogTitle("Load image file");
         int returnVal = fc.showOpenDialog(null);
@@ -41,14 +41,14 @@ public class HyperImageClassifier {
         String imgpath = file;
         System.out.println(file);
         
+        //Dialogue to choose a calibration file
         JFileChooser fc_calib = new JFileChooser();
         fc_calib.setDialogTitle("Load calibration file");
         int returnVal_calib = fc_calib.showOpenDialog(null);
         String file_calib = fc_calib.getSelectedFile().getAbsolutePath();
         String calibpath = file_calib;
         
-        String modelpath = "C:\\HyperSpec\\masha_setaria.xml";
-        //System.setProperty("java.library.path", "C:\\opencv\\opencv\\build\\java\\x64");
+        String modelpath = "C:\\HyperSpec\\masha_setaria.xml";  //load your model here
         
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
               
@@ -62,15 +62,9 @@ public class HyperImageClassifier {
         Size sz = new Size(1000,800);
         Imgproc.resize(rgb, resizeimage, sz );
         
-        /*JFileChooser fc = new JFileChooser();
-        int returnVal = fc.showSaveDialog(null);
-        String file = fc.getSelectedFile().getAbsolutePath();
-        String modelpath = file;*/
-        
         currentimage.loadModelFromXML(modelpath);
         
         Mat predicted = currentimage.predictImage();
-        //Mat predicted = new Mat(new Size(currentimage.getImageframes(), currentimage.getWidth()), CV_16U, new Scalar(65535.0));
         Mat predicted8 = new Mat();
         
         Mat predictederoded = new Mat();
