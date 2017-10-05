@@ -36,6 +36,7 @@ public class HyperImageClassifier {
         
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
         
+        //Popup dialogue to select the BIL file
         JFileChooser fc = new JFileChooser();
         fc.setDialogTitle("Load image file");
         int returnVal = fc.showOpenDialog(null);
@@ -43,6 +44,7 @@ public class HyperImageClassifier {
         imgpath = file;
         System.out.println(file);
         
+        //Popup dialogue to select the calibration file
         JFileChooser fc_calib = new JFileChooser();
         fc_calib.setDialogTitle("Load calibration file");
         int returnVal_calib = fc_calib.showOpenDialog(null);
@@ -53,7 +55,8 @@ public class HyperImageClassifier {
         currentimage.readBIL(imgpath, calibpath);
         currentimage.subsampleWavelengths(4, false);
         
-        currentimage.loadModelFromXML("C:\\HyperSpec\\masha_setaria.xml");
+        //optional code to first apply a KNN classifier to the image before doing PCA
+        /*currentimage.loadModelFromXML("C:\\HyperSpec\\masha_setaria.xml");
         
         Mat predicted = currentimage.predictImage();
         //Mat predicted = new Mat(new Size(currentimage.getImageframes(), currentimage.getWidth()), CV_16U, new Scalar(65535.0));
@@ -66,9 +69,8 @@ public class HyperImageClassifier {
         predictederoded.convertTo(predicted8, CV_8U, 255.0);
         Highgui.imwrite("C:\\HyperSpecTemp\\mask.png", predicted8);
         
-        currentimage.applyMask(predicted8);
-        
-        currentimage.writeAllFrames(currentimage.getHyperimage(), "C:\\HyperSpecTemp\\");
+        currentimage.applyMask(predicted8);     //this sets all non-class-1 pixel reflectance values to 0 for all wavelengths
+        */
         
         ArrayList<Mat> pcacube = currentimage.doPCA(nPCs);
         
